@@ -11,8 +11,10 @@ namespace PizzaToppings
         static void Main(string[] args)
         {
             List<string> nonVegetarianPizzaToppings = new List<string> { "CHICKEN", "HAM", "MEAT", "PEPPERONI", "SALAMI" };
-            Console.Write("What pizza topping do you want? ");
-            string pizzaToppingInput = Console.ReadLine().ToUpper();
+
+            WriteLineColour("CYAAAAN", ConsoleColor.Cyan);
+
+            string pizzaToppingInput = Question("What pizza topping do you want? ").ToUpper();
 
             if (nonVegetarianPizzaToppings.Contains(pizzaToppingInput))
             {
@@ -24,9 +26,25 @@ namespace PizzaToppings
                 Console.WriteLine("Vegetarian Topping");
             }
 
-            Console.ReadLine();
+            string favouriteMusic = Question("What is you're favourite music genre").ToUpper();
 
+            switch (favouriteMusic)
+            {
+                case "JAZZ":
+                    Console.WriteLine("You like jazzzzzz");
+                    break;
 
+                case "ROCK":
+                case "K-POP":
+                    Console.WriteLine("That's trash");
+                    break;
+
+                default:
+                    Console.Write("Eh? What's that?");
+                    break;
+            }
+
+            #region switch...
             /*switch (pizzaToppingInput)
             {
                 case "PEPPERONI":
@@ -43,6 +61,33 @@ namespace PizzaToppings
                     Console.WriteLine("Don't know?");
                     break;
             }*/
+            #endregion
+
+            Console.ReadLine();
+
+        }
+
+        /// <summary>
+        /// Ask a question
+        /// </summary>
+        /// <param name="question">Question to ask</param>
+        /// <returns>The answer to the question</returns>
+        static string Question(string question) // Ask a question
+        {
+            Console.Write(question);
+            return Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Write a line to the console in the specified colour
+        /// </summary>
+        /// <param name="message">The message to write</param>
+        /// <param name="colour">The colour to write in</param>
+        static void WriteLineColour(string message, ConsoleColor colour)
+        {
+            Console.ForegroundColor = colour;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }
